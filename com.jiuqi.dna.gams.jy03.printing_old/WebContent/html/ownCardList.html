@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html>
+<head>
+<base href="/printing/">
+<meta charset="UTF-8">
+<title>个人资产页面</title>
+<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/pagination.css">
+<link rel="stylesheet" href="css/font.css" />
+<link rel="stylesheet" href="css/sweetalert2.min.css" />
+<link rel="stylesheet" href="css/load.css" />
+<link rel="stylesheet" href="html/layui/css/layui.css">
+<link rel="stylesheet" href="css/jqkeyboard.css" />
+<style>
+    #jqk-toggle-btn{
+      z-index:100;
+    }
+	#jq-keyboard{
+		left: 0;
+		width: 100%;
+	}
+	#jq-keyboard .btn-row{
+		height: 40px;
+	}
+	#jq-keyboard button.jqk-btn{
+		width: 80px;
+		height: 40px;
+	}
+	button.jqk-lang-btn{
+		display: none;
+	}
+	#jqk-lang-cont{
+		margin-bottom: 0;
+	}
+	#jq-keyboard.show {
+       padding-bottom: 50px;
+    }
+</style>
+<style type="text/css">
+button.lucencyBtn {
+	height: 30px;
+	margin: 0;
+	padding: 0 20px;
+	vertical-align: middle;
+	background: #19b9e7;
+	border: 0;
+	font-family: 'Roboto', sans-serif;
+	font-size: 16px;
+	font-weight: 300;
+	line-height: 30px;
+	border-style: solid;
+	border-width: 1px;
+	border-radius: 8px;
+	border-color: #FFFFFF;
+	color: #fff;
+	background-color: #000000;
+	background-color: rgba(0, 0, 0, 0);
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+	text-shadow: none;
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	-o-transition: all .3s;
+	-moz-transition: all .3s;
+	-webkit-transition: all .3s;
+	-ms-transition: all .3s;
+	transition: all .3s;
+}
+
+button.lucencyBtn:hover {
+	opacity: 0.6;
+	color: #fff;
+	background-color: background-color:#000000;
+	background-color: rgba(0, 0, 0, 0);
+}
+
+button.lucencyBtn:active {
+	outline: 0;
+	opacity: 0.6;
+	color: #fff;
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	background-color: #000000;
+	background-color: rgba(0, 0, 0, 0);
+}
+
+button.lucencyBtn:focus {
+	outline: 0;
+	opacity: 0.6;
+	background: #19b9e7;
+	color: #fff;
+	background-color: #000000;
+	background-color: rgba(0, 0, 0, 0);
+}
+
+button.lucencyBtn:active:focus, button.lucencyBtn.active:focus {
+	outline: 0;
+	opacity: 0.6;
+	background: #19b9e7;
+	color: #fff;
+	background-color: #000000;
+	background-color: rgba(0, 0, 0, 0);
+}
+
+.right_triangle {
+	width: 0px;
+	height: 0px;
+	/* border-color: rgb(23, 140, 91) transparent; */
+	border-color: #3477CB transparent;
+	border-width: 0px 0px 40px 40px;
+	border-style: solid;
+}
+
+.card_selected {
+	border-width: 1px;
+	/* border-color: rgb(23, 140, 91);*/
+	border-color: #3477CB; 
+	border-style: solid;
+}
+
+.card_unselected {
+	
+}
+
+button {
+	outline: none;
+	filter: chroma(color = #000000);
+}
+
+.count_control {
+	background-color: white;
+	border-radius: 5px;
+	border: 1px solid rgb(231, 231, 231);
+}
+
+#pagetionId {
+	position: absolute;
+	left: 0;
+	bottom: 20px;
+	z-index: 10;
+	width: 100%;
+	height: 40px;
+}
+
+.modal-conImg{
+	width:600px;
+	height:482px;
+	display:block;
+}
+.modal-con{
+	position:relative;
+}
+.modal-footer{
+	position:absolute;
+	bottom:10%;
+	width:600px;
+	padding:0 80px;
+	border-top:0;
+}
+.red{
+	color:red;
+	font-size:25px;
+	font-weight: 1000;
+}
+.box{
+	width: 500px;
+	height: 100px;
+	overflow-y:scroll;
+}
+.box::-webkit-scrollbar{
+	width: 5px;     /*高宽分别对应横竖滚动条的尺寸*/
+	height: 1px;
+}
+.box::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+	background: #ccc;
+}
+.box::-webkit-scrollbar-track {/*滚动条里面轨道*/
+	border-radius: 10px;
+	background: #fff;
+}
+tr:nth-child(1){
+	border-bottom: solid 1px #999;
+	height: 40px;
+}
+th,tr{
+	width: 100px;
+	height: 20px;
+	text-align: left;
+}
+th:nth-child(1),tr:nth-child(1){
+	width: 150px;
+}
+.nav_icon {
+	display: inline-block;
+	bottom: 20px;
+	position: fixed;
+	border-width: 0px;
+	width: 40px;
+	height: 40px;
+	vertical-align: middle;
+	text-align: center;
+	background-color: rgba(0, 0, 0, 0.8);
+	border-bottom-right-radius: 2em;
+	border-top-right-radius: 2em;
+}
+
+.nav_of_vertical {
+	display: inline-block;
+	width: 240px;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.8);
+	vertical-align: middle;
+}
+</style>
+</head>
+<body style="background-color: RGB(238, 245, 247); position: relative;">
+	<!--导航条-->
+	<nav class="navbar navbar-default"
+		style="position: fixed;top:0;left:0;width:100%;z-index:1000; background: linear-gradient(to right, RGB(59, 109, 161), RGB(37, 164, 132)); background:#3477CB;height: 64px;">
+		<div style="margin-right: 2%; margin-left: 2%;">
+			<div class="navbar-header"
+				style="position: absolute; top: 50%; transform: translateY(-50%);">
+				<img src="img/schoollogo.png" style="display: inline-block; width: 350px; height: 33px; margin: 0 0 10px 0;" />
+				<!-- <span style="font-size: 22px; color: #FFFFFF;">资产管理平台自助打印服务终端</span> -->
+			</div>
+			<div class="collapse navbar-collapse" id="top-navbar-1"
+				style="position: absolute; top: 50%; transform: translateY(-50%); right: 2%;">
+				<ul class="nav navbar-nav navbar-right">
+					<li style="margin-right: 30px;">
+						<button class="lucencyBtn" onclick="returnToHome()">
+							<img src="img/tohomepage.svg"
+								style="display: inline-block; width: 20px; height: 20px; margin: 0 0 6px 0;" />
+							首页
+						</button>
+					</li>
+					<li style="margin-right: 30px;">
+						<img src="img/defaultuser.png" style="display: inline-block; width: 30px; height: 30px; margin: 0 0 3.5px 0;" />
+						<span id="username" title="用户名称" style="font-family: MicrosoftYaHei; font-size: 16px; color: #FFFFFF; letter-spacing: 0; text-align: right;"></span>
+					</li>
+					<li>
+						<img onclick="logout()" src="img/logout.svg" title="注销" style="display: inline-block; cursor: pointer; width: 24px; height: 24px;" />
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div id="dataDiv" style="margin: 78px 2% 0;">
+		<div style="width: 100%;position: fixed;top: 64px;padding:20px 38px 20px 38px;left: 0;z-index: 1000;background-color:RGB(238, 245, 247);">
+			<input id="searchInput" onclick="showKeyboard()"
+				style="color:#8C8C8C; text-align:left;text-indent: 10px; width: 300px; border-width: 0px; border-top-left-radius: 5px; border-bottom-left-radius: 5px; height: 40px; line-height: 40px;"
+				type="text" placeholder="请输入搜索内容" />
+			<button
+				style="color: #FFFFFF; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border: 0px; background-color: RGB(23, 140, 91); background-color:#3477CB; width: 40px; height: 40px;"
+				onclick="executeSearch()">
+				<span class="glyphicon glyphicon-search"></span>
+			</button>
+			<div style="display: inline-block; float: right; padding-right: 20px;">
+				<span id="totalCount" style="margin-right: 20px;font-size:large"></span>
+				<button
+					style="width: 100px; border-width: 0px; background-color: white; border-radius: 5px; height: 40px; margin-right: 20px;"
+					onclick="select_all();">
+					<span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;全选
+				</button>
+				<button
+					style="width: 150px; border-width: 0px; background-color: white; border-radius: 5px; height: 40px; margin-right: 20px;"
+					onclick="cancel_select_all();">
+					<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;取消全选
+				</button>
+				<button
+					style="width: 150px; border-width: 0px; border-radius: 5px; color: #FFFFFF; background-color: RGB(23, 140, 91); background-color:#3477CB; height: 40px; margin-right: 20px;"
+					onclick="show_modal('label')">
+					<span class="glyphicon glyphicon-print"></span>&nbsp;&nbsp;打印标签
+				</button>
+				<!-- <button
+					style="width: 150px; border-width: 0px; border-radius: 5px; color: #FFFFFF; background-color: RGB(23, 140, 91); height: 40px;"
+					onclick="show_modal('bill')">
+					<span class="glyphicon glyphicon-print"></span>&nbsp;&nbsp;打印卡片
+				</button> -->
+			</div>
+		</div>
+
+		<div id="card_list" style="width: 100%; overflow: hidden; min-height: 870px;margin-top:145px;">
+			<script type="text/template" id="cardList">
+				<% for (var i=0,l=list.length;i<l;i++) { %>
+					<div class="col-md-4 col-sm-4 list_item" style="margin-bottom:20px;padding:0 20px 0 0;height:250px;position: relative;">
+						<div class="card_unselected" style="cursor:pointer;background-color: #FFFFFF;border-radius: 5px;width: 100%;height: 100%;display: inline-block;float: left;" onclick="click_card(this)">
+							<div style="width: 100%;position:absolute;top: 50%;transform: translateY(-50%);">
+								<div class="col-md-3 col-sm-3" style="padding: 5px 5 0 25px;height: 100%;">
+									<img src="img/defaultasset.png" style="width: 70px;height: 70px;"/>
+								</div>
+								<div class="col-md-9 col-sm-9" style="padding: 0px 30px 0 15px;height: 100%;">
+									<div hidden="hidden">
+										<span class="recid"><%= list[i].recid%></span>
+										<span class="billdefineid"><%= list[i].billdefineid%></span>
+									</div>
+									<div style="width: 100%;margin-bottom: 10px;">
+										<b style="display: inline-block;margin-right: 30px;font-size:large;">资产编号</b>
+										<span class="billcode" style="display: inline-block;color: rgb(149,149,149);font-size:large;"><%= list[i].billcode%></span>
+									</div>
+									<div style="width: 100%;margin-bottom: 10px;">
+										<span style="display: inline-block;color: rgb(149,149,149);">资产名称：</span>
+										<span class="zicmc" style="display: inline-block;color: rgb(149,149,149);"><%= list[i].zicmc%></span>
+									</div>
+									<div style="width: 100%;margin-bottom: 10px;">
+										<span style="display: inline-block;color: rgb(149,149,149);">使用人：</span>
+										<span class="shiyr" style="display: inline-block;color: rgb(149,149,149);"><%= list[i].shiyr%></span>
+									</div>
+									<div style="width: 100%;margin-bottom: 10px;">
+										<button style="cursor:default;display: inline-block;color: rgb(149,149,149);background-color: rgb(224,224,224);border-width: 0px;border-radius: 5px;width: 160px;height: 40px;">
+											<span class="jiaz" style="font-size: x-large;"><%= list[i].jiaz%></span>
+										</button>
+									</div>
+									<div style="width: 100%;margin-bottom: 10px;">
+										<span style="text-align: left;color: rgb(149,149,149);">使用部门：</span>
+										<span class="shiybm" style="text-align: left;color: rgb(149,149,149);"><%= list[i].shiybm%></span>
+									</div>
+                                    <% if(list[i].hangydl !="房屋及建筑物" && list[i].hangydl !="土地及植物" && list[i].hangydl !="无形资产"){ %>
+									   <div style="width: 100%;margin-bottom: 10px;">
+										  <span style="text-align: left;color: rgb(149,149,149);">存放地点：</span>
+										  <span class="cunfdd" style="text-align: left;color: rgb(149,149,149);"><%= list[i].cunfdd%></span>
+									   </div>
+                                    <% } %>
+									<div style="width: 100%;margin-bottom: 10px;display:none;">
+										<span style="text-align: left;color: rgb(149,149,149);">取得时间：</span>
+										<span class="querq" style="text-align: left;color: rgb(149,149,149);"><%= list[i].querq%></span>
+									</div>
+                                    <div style="width: 100%;margin-bottom: 10px;">
+										<span style="text-align: left;color: rgb(149,149,149);">数量：</span>
+										<span class="shul" style="text-align: left;color: rgb(149,149,149);"><%= list[i].shul%></span>
+									</div>
+								</div>
+							</div>
+							<div class="right_triangle" style="color:white;position: absolute;right: 0;bottom: 0;transform: translateX(-20px);" hidden="hidden">
+								<span class="glyphicon glyphicon-ok" style="float: right;transform: translateX(-50%) translateY(125%);"></span>
+							</div>								
+						</div>
+					</div>
+				<% } %>
+			</script>
+		</div>
+
+	</div>
+    <!--左侧导航条-->
+	<div style="position: fixed; left: 0; top: 0; height: 100%; z-index: 1000;">
+		<div id="nav_vertical" class="nav_of_vertical" style="display: none; position: relative;">
+			<div id="nav_vertical_list" style="position: absolute; display: inline-block; top: 50%; transform: translateY(-50%); width: 100%;">
+				<div id="ownAssetCard" class="row" onclick="saveFunctionName('ownAssetCard')" style="margin-right:15px; margin-left:0px;display:none">
+					<div class="col-md-11"
+						style="cursor: pointer; border-top-right-radius: 5px; border-bottom-right-radius: 5px; height: 50px; vertical-align: middle; background: none">
+						<button style="background: none; border-width: 0px; height: 100%;">
+							<img src="img/ownAssetCard.png" style="width: 25px; height: 25px;" />
+							<span style="color: rgb(176, 176, 176);">&nbsp;&nbsp;个人名下资产</span>
+					    </button>
+				    </div>
+				</div>
+				<div id="assetCard" class="row" onclick="saveFunctionName('assetCard')" style="margin-right:15px; margin-left:0px;display:none">
+					<div class="col-md-11"
+						style="cursor: pointer; border-top-right-radius: 5px; border-bottom-right-radius: 5px; height: 50px; vertical-align: middle; background: none">
+						<button style="background: none; border-width: 0px; height: 100%;">
+							<img src="img/assetCard.png" style="width: 25px; height: 25px;" />
+							<span style="color: rgb(176, 176, 176);">&nbsp;&nbsp;管辖资产</span>
+					    </button>
+				    </div>
+				</div>
+				<div id="checkIn" class="row" onclick="saveFunctionName('checkIn')" style="margin-right:15px; margin-left:0px;display:none">
+					<div class="col-md-11"
+						style="cursor: pointer; border-top-right-radius: 5px; border-bottom-right-radius: 5px; height: 50px; vertical-align: middle; background: none">
+						<button style="background: none; border-width: 0px; height: 100%;">
+							<img src="img/checkIn.png" style="width: 25px; height: 25px;" /><!-- 报增单图片待替换 -->
+							<span style="color: rgb(176, 176, 176);">&nbsp;&nbsp;登记建账单</span>
+						</button>
+					</div>
+				</div>
+				<div id="exchange" class="row" onclick="saveFunctionName('exchange')" style="margin-right:15px; margin-left:0px;display:none">
+					<div class="col-md-11"
+						style="cursor: pointer; border-top-right-radius: 5px; border-bottom-right-radius: 5px; height: 50px; vertical-align: middle; background: none">
+						<button style="background: none; border-width: 0px; height: 100%;">
+							<img src="img/exchange.png" style="width: 25px; height: 25px;" />
+							<span style="color: rgb(176, 176, 176);">&nbsp;&nbsp;调剂单</span>
+						</button>
+					</div>
+				</div>
+				<div id="assetChange" class="row" onclick="saveFunctionName('assetChange')" style="margin-right:15px; margin-left:0px; display:none ">
+					<div class="col-md-11"
+						style="cursor: pointer; border-top-right-radius: 5px; border-bottom-right-radius: 5px; height: 50px; vertical-align: middle; background: none;">
+						<button style="background: none; border-width: 0px; height: 100%;">
+							<img src="img/assetChange.png" style="width: 25px; height: 25px;" />
+							<span style="color: rgb(176, 176, 176);">&nbsp;&nbsp;资产分类变动单</span>
+						</button>
+					</div>
+				</div>
+				<div id="commonChange" class="row" onclick="saveFunctionName('commonChange')" style="margin-right:15px; margin-left:0px; display:none ">
+					<div class="col-md-11"
+						style="cursor: pointer; border-top-right-radius: 5px; border-bottom-right-radius: 5px; height: 50px; vertical-align: middle; background: none;">
+						<button style="background: none; border-width: 0px; height: 100%;">
+							<img src="img/commonChange.png" style="width: 25px; height: 25px;" />
+							<span style="color: rgb(176, 176, 176);">&nbsp;&nbsp;普通信息变动单</span>
+						</button>
+					</div>
+				</div>
+				<div id="importantChange" class="row" onclick="saveFunctionName('importantChange')" style="margin-right:15px; margin-left:0px;display:none">
+					<div class="col-md-11"
+						style="cursor: pointer; border-top-right-radius: 5px; border-bottom-right-radius: 5px; height: 50px; vertical-align: middle; background: none">
+						<button style="background: none; border-width: 0px; height: 100%;">
+							<img src="img/importantChange.png" style="width: 25px; height: 25px;" />
+							<span style="color: rgb(176, 176, 176);">&nbsp;&nbsp;增减值变动单</span>
+						</button>
+					</div>
+				</div>
+				<div id="cardSplit" class="row" onclick="saveFunctionName('cardSplit')" style="margin-right:15px; margin-left:0px;display:none">
+					<div class="col-md-11"
+						style="cursor: pointer; border-top-right-radius: 5px; border-bottom-right-radius: 5px; height: 50px; vertical-align: middle; background: none">
+						<button style="background: none; border-width: 0px; height: 100%;">
+							<img src="img/cardSplit.png" style="width: 25px; height: 25px;" />
+							<span style="color: rgb(176, 176, 176);">&nbsp;&nbsp;卡片拆分单</span>
+						</button>
+					</div>
+				</div>
+				<div id="assetWithdraw" class="row" onclick="saveFunctionName('assetWithdraw')" style="margin-right:15px; margin-left:0px;display:none">
+					<div class="col-md-11"
+						style="cursor: pointer; border-top-right-radius: 5px; border-bottom-right-radius: 5px; height: 50px; vertical-align: middle; background: none">
+						<button style="background: none; border-width: 0px; height: 100%;">
+							<img src="img/assetWithdraw.png" style="width: 25px; height: 25px;" />
+							<span style="color: rgb(176, 176, 176);">&nbsp;&nbsp;资产退库单</span>
+						</button>
+					</div>
+				</div>
+				<div id="reportOld" class="row" onclick="saveFunctionName('reportOld')" style="margin-right:15px; margin-left:0px;display:none">
+					<div class="col-md-11"
+						style="cursor: pointer; border-top-right-radius: 5px; border-bottom-right-radius: 5px; height: 50px; vertical-align: middle; background: none">
+						<button style="background: none; border-width: 0px; height: 100%;">
+							<img src="img/reportOld.png" style="width: 25px; height: 25px;" />
+							<span style="color: rgb(176, 176, 176);">&nbsp;&nbsp;处置报废单</span>
+						</button>
+					</div>
+				</div>
+				<div id="handoverBill" class="row" onclick="saveFunctionName('handoverBill')" style="margin-right:15px; margin-left:0px;display:none">
+					<div class="col-md-11"
+						style="cursor: pointer; border-top-right-radius: 5px; border-bottom-right-radius: 5px; height: 50px; vertical-align: middle; background: none">
+						<button style="background: none; border-width: 0px; height: 100%;">
+							<img src="img/handoverBill.png" style="width: 25px; height: 25px;" />
+							<span style="color: rgb(176, 176, 176);">&nbsp;&nbsp;资产交接单</span>
+						</button>
+					</div>
+				</div>
+				<div id="innerTransfer" class="row" onclick="saveFunctionName('innerTransfer')" style="margin-right:15px; margin-left:0px;display:none">
+					<div class="col-md-11"
+						style="cursor: pointer; border-top-right-radius: 5px; border-bottom-right-radius: 5px; height: 50px; vertical-align: middle; background: none">
+						<button style="background: none; border-width: 0px; height: 100%;">
+							<img src="img/innerTransfer.png" style="width: 25px; height: 25px;" />
+							<span style="color: rgb(176, 176, 176);">&nbsp;&nbsp;部门内资产调拨单</span>
+						</button>
+					</div>
+				</div>
+				<div id="transfer" class="row" onclick="saveFunctionName('transfer')" style="margin-right:15px; margin-left:0px;display:none">
+					<div class="col-md-11"
+						style="cursor: pointer; border-top-right-radius: 5px; border-bottom-right-radius: 5px; height: 50px; vertical-align: middle; background: none">
+						<button style="background: none; border-width: 0px; height: 100%;">
+							<img src="img/transfer.png" style="width: 25px; height: 25px;" />
+							<span style="color: rgb(176, 176, 176);">&nbsp;&nbsp;部门间资产调拨单</span>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<button id="nav_vertical_icon" class="nav_icon" onclick="showVerticalNav()">
+			<span class="glyphicon glyphicon-align-justify" style="color: white;"></span>
+		</button>
+	</div>
+	<!-- 添加分页控件 -->
+	<div id="pagetionId">
+		<div class="m-style"></div>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="printModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-keyboard="false">
+		<div class="modal-dialog" role="document">
+			<div class="modal-con" style="border-radius: 10px;">
+				<img class="modal-conImg" src="img/beforeprinting.png" />
+				<div class="modal-body" style="text-align: center;position:absolute;top:50%;width:600px;">
+					<span style="font-size: large;">本次打印共 <span class="red" id="selectedNum">1</span> 张&nbsp;&nbsp;&nbsp;打印份数</span>
+					<span style="font-size: large;"><span class="red" id="copyCount">1</span></span>
+					<span style="font-size: large;">份</span>
+				</div>
+				<div class="modal-main" style="position:absolute;top:60%;width:100%;left:12%;">
+					<div id = "modalDate" class="box">
+					
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button id="modalCancel" onclick="print_reset()" type="button" class="btn btn-default" data-dismiss="modal"style="border-radius: 5px; float: left; color: RGB(23, 140, 91);color:#3477CB; width: 150px; font-size: 16px;">返回</button>
+					<button id="modalOK" onclick="print_submit()" type="button" class="btn btn-primary" style="border-radius: 5px; border-width: 0px; float: right; background: linear-gradient(to right, RGB(57, 154, 210), RGB(37, 164, 132));background:#3477CB; width: 150px; font-size: 16px;">提交</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+<!-- SweetAlert2 插件相关 -->
+<script src="js/jquery-2.1.1.min.js"></script>
+<script src="html/layui/layui.js"></script>
+<script src="js/es6-promise.min.js"></script>
+<script src="js/es6-promise.auto.js"></script>
+<script src="js/sweetalert2.min.js"></script>
+<!-- SweetAlert2 插件相关 -->
+<script src="js/bootstrap.js"></script>
+<script src="js/jquery.backstretch.min.js"></script>
+<script src="js/template-native.js"></script>
+<script src="js/jquery.pagination.js"></script>
+<!-- 数据加载遮罩层 -->
+<script src="js/load-min.js"></script>
+<!-- 数据加载遮罩层 -->
+<script src="js/jquery.cookie.js"></script>
+<script src="js/timeout.js"></script>
+<script src="js/returntohome.js"></script>
+<script src="js/jquery-ui.min.js"></script>
+<script src="js/jqkeyboard-min.js"></script>
+<script src="js/jqk.layout.en.js"></script>
+<script>
+	//用来初始化软键盘
+	$(function() {
+		"use strict";
+		jqKeyboard.init({
+			allowed : [ "#searchInput" ],
+			icon : "light"
+		});
+	});
+</script>
+<script>
+	$.mask_element("#dataDiv");
+	$("#username").text($.cookie('userTitle'));
+	
+	layui.use('layer', function(){
+		  var layer = layui.layer;
+	});
+	
+	var pageIndex = 1;
+	var pageCount = 1;
+	var pageSize = 9;
+	var functionName = sessionStorage.functionName;
+	console.log(functionName);
+	//左侧菜单展示项
+	var functions = sessionStorage.functions;
+	var fuc = functions.split(',');
+	for(var i=0;i<fuc.length;i++){
+		if(document.getElementById(fuc[i])){
+			document.getElementById(fuc[i]).style.display="block";
+		}
+	}
+	window.onload = function() {
+		$.ajax({
+			type : "post",
+			url : "getOwnAssetCard?pageIndex=" + pageIndex + "&&pageSize="
+					+ pageSize + "&&value=",
+			dataType : "json",
+			charset : 'UTF-8',
+			success : function(data) {
+				if (data !== null && data.length > 0) {
+					var html = template('cardList', {
+						list : data
+					});
+					$('#card_list').html(html);
+					$('#totalCount').text("总数量:"+data[0].cardCount);
+					/*分页*/
+					pageCount = Math.ceil(data[0].cardCount / pageSize);
+					$('.m-style').pagination(
+							{
+								pageCount : pageCount,
+								jump : true,
+								coping : true,
+								homePage : '首页',
+								endPage : '末页',
+								prevContent : '上页',
+								nextContent : '下页',
+								callback : function(api) {
+									$.mask_element("#dataDiv");
+									$.ajax({
+										type : "post",
+										url : "getOwnAssetCard?pageIndex="
+												+ api.getCurrent()
+												+ "&&pageSize=" + pageSize
+												+ "&&value=",
+										dataType : "json",
+										charset : 'UTF-8',
+										success : function(data) {
+											cardArr = [];
+											var html = template('cardList', {
+												list : data,
+												group : Math
+														.ceil(data.length / 3)
+											});
+											$('#card_list').html(html);
+											pageIndex = api.getCurrent();
+										},
+										complete : function() {
+											$.mask_close("#dataDiv");
+										}
+									});
+								}
+							});
+				} else {
+					var html = "<img style='position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);' src='img/nocontents.png'></img>";
+					html += "<span style='position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color: #666666;'>抱歉，页面暂无内容</span>";
+					$('#card_list').html(html);
+					$('.m-style').html('');
+				}
+			},
+			error : function(err) {
+				console.log(err);
+			},
+			complete : function() {
+				$.mask_close("#dataDiv");
+			}
+		});
+	}
+
+	function executeSearch() {
+		$.mask_element("#dataDiv");
+		var value = $("#searchInput").val().trim();
+		var pram={
+				value:value	
+		};
+		$.ajax({
+			type : "post",
+			url : "getOwnAssetCard?pageIndex=" + 1 + "&&pageSize=" + pageSize,
+			data: pram,			
+			dataType : "json",
+			success : function(data) {
+				if (data !== null && data.length > 0) {
+					var html = template('cardList', {
+						list : data,
+						group : Math.ceil(data.length / 3)
+					});
+					$('#card_list').html(html);
+					$('#totalCount').text("总数量:"+data[0].cardCount);
+					pageCount = Math.ceil(data[0].cardCount / pageSize);
+					$('.m-style').pagination(
+							{
+								pageCount : pageCount,
+								jump : true,
+								coping : true,
+								homePage : '首页',
+								endPage : '末页',
+								prevContent : '上页',
+								nextContent : '下页',
+								callback : function(api) {
+									$.mask_element("#dataDiv");
+									$.ajax({
+										type : "post",
+										url : "getOwnAssetCard?pageIndex="
+												+ api.getCurrent()
+												+ "&&pageSize=" + pageSize,
+										data: pram,			
+										dataType : "json",
+										charset : 'UTF-8',
+										success : function(data) {
+											cardArr = [];
+											var html = template('cardList', {
+												list : data,
+												group : Math
+														.ceil(data.length / 3)
+											});
+											$('#card_list').html(html);
+											pageIndex = api.getCurrent();
+										},
+										complete : function() {
+											$.mask_close("#dataDiv");
+										}
+									});
+								}
+							});
+				} else {
+					var html = "<img style='position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);' src='img/nocontents.png'></img>";
+					html += "<span style='position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color: #666666;'>抱歉，页面暂无内容</span>";
+					$('#card_list').html(html);
+					$('.m-style').html('');
+				}
+			},
+			error : function(err) {
+				console.log(err);
+			},
+			complete : function() {
+				$.mask_close("#dataDiv");
+			}
+		});
+	}
+
+	function click_card(card) {
+		var status = $(card).attr("class");
+		if (status == "card_selected") {
+			$(card).attr("class", "card_unselected");
+			$(card).children().last().hide();
+			$(card).find("button").attr(
+							"style",
+							"cursor:default;display: inline-block;color: rgb(149,149,149);background-color: rgb(224,224,224);border-width: 0px;border-radius: 5px;width: 150px;height: 40px;");
+		} else if (status == "card_unselected") {
+			$(card).attr("class", "card_selected");
+			$(card).children().last().show();
+			$(card).find("button").attr(
+							"style",
+							"cursor:default;display: inline-block;color: white;background: linear-gradient(to right, RGB(57,154,210) , RGB(37,164,132));background:#3477CB;border-width: 0px;border-radius: 5px;width: 150px;height: 40px;");
+		}
+	}
+
+	function select_all() {
+		$(".card_unselected").each(function() {
+			$(this).click();
+		});
+	}
+
+	function cancel_select_all() {
+		$(".card_selected").each(function() {
+			$(this).click();
+		});
+	}
+
+	var printType;
+	function show_modal(pt) {
+		var num = $(".card_selected").length;
+		if (num > 0) {
+			printType = pt;
+			console.log(printType);
+			$("#selectedNum").text(num);
+			writeModalMain();
+			$("#printModal").modal({backdrop: 'static', show: true});/*backdrop: 'static'指的是点击背景空白处模态窗口不被关闭*/
+		} else {
+			/*swal('提示', '请选择要打印的资产卡片', 'warning');标题，提示内容，提示类型*/
+			layer.alert('<font size="3">请选择要打印的资产卡片<font size="3">', {icon: 0});
+			return;
+		}
+	}		
+			function writeModalMain(){
+			var str ="<table border='0' cellspacing='' cellpadding=''><tr><th>卡片编号</th><th>资产名称</th><th>价值</th><th>取得日期</th></tr>";
+			var strboby = "";
+			for (var i=0;i<cardArr.length;i++)
+			{
+				strboby = strboby+ "<tr><td>"+cardArr[i].billcode+"</td><td>"+cardArr[i].zicmc+"</td><td>"+cardArr[i].jiaz+"</td><td>"+cardArr[i].querq+"</td></tr>";
+					}
+			str = str+strboby+"</table>";
+			$("#modalDate").html(str);
+			}
+
+	function plus_count(control) {
+		var num = $(control).prev().children().first().text();
+		$(control).prev().children().first().text(parseInt(num) + 1);
+	}
+
+	function minus_count(control) {
+		var num = $(control).next().children().first().text();
+		if (parseInt(num) > 0) {
+			$(control).next().children().first().text(parseInt(num) - 1);
+		}
+	}
+
+	var cardArr = [];
+	var recid, billdefineid, billcode, zicmc, shiyr, jiaz, shiybm, cunfdd;
+	$("#card_list").on('click', '.list_item', function() {
+		var status = $(this).children().first().attr("class");
+		if (status == "card_selected") {
+			var cardObj = {};
+
+			billdefineid = $(this).find(".billdefineid").text();
+			recid = $(this).find(".recid").text();
+			billcode = $(this).find(".billcode").text();
+			zicmc = $(this).find(".zicmc").text();
+			shiyr = $(this).find(".shiyr").text();
+			jiaz = $(this).find(".jiaz").text();
+			shiybm = $(this).find(".shiybm").text();
+			cunfdd = $(this).find(".cunfdd").text();
+			querq = $(this).find(".querq").text();
+
+			cardObj.billdefineid = billdefineid;
+			cardObj.recid = recid;
+			cardObj.billcode = billcode;
+			cardObj.zicmc = zicmc;
+			cardObj.shiyr = shiyr;
+			cardObj.jiaz = jiaz;
+			cardObj.shiybm = shiybm;
+			cardObj.cunfdd = cunfdd;
+			cardObj.querq = querq;
+
+			cardArr.push(cardObj);
+		} else if (status == "card_unselected") {
+			billcode = $(this).find(".billcode").text();
+			for (var i = 0; i < cardArr.length; i++) {
+				if (cardArr[i].billcode == billcode) {
+					cardArr.splice(i, 1);
+				}
+			}
+		}
+	});
+
+	function print_submit() {
+		var curShowText = $("#modalOK").text();
+		var selectedNum = $("#selectedNum").text() - 0;
+		var copyCount = $("#copyCount").text() - 0;
+		if(copyCount ==0){
+			layer.alert('<font size="3">打印份数为0,不可打印<font size="3">', {icon: 0});
+			return;
+		}
+		var paperPieces = selectedNum * copyCount;
+		if(curShowText.trim() == "提交"){
+			$.ajax({
+				type : "post",
+				url : "printAssetCard?copyCount="+copyCount+"&&printType="+printType+"&&paperPieces="+paperPieces,
+				data : {
+					"data" : JSON.stringify(cardArr)
+				},
+				dataType : "json",
+				success : function(data) {
+					if (data.code == 0) {
+						$(".modal-con").find(".modal-conImg").attr("src", "img/onprinting.png");
+						layer.alert('<font size="3">' + data.message + '<font size="3">', {icon: 0});
+						$("#modalDate").html("<span style='text-align: center;position:absolute;top: 33%;width: 453px;font-size: 28px;'>正在打印中......</span>");
+						$("#modalOK").html("打印故障");
+						$("#modalCancel").html("返回");
+					} 
+					else if (data.code == 1) {
+						$(".modal-con").find(".modal-conImg").attr("src", "img/afterprinting.png");
+						$("#modalDate").html("<span style='text-align: center;position:absolute;top: 33%;width: 453px;font-size: 28px;'>打印完成请取件</span>");
+						$("#modalCancel").html("打印其它项目");
+						$("#modalOK").html("注销登录");
+					} else if (data.code == 2) {
+						$(".modal-con").find(".modal-conImg").attr("src", "img/onprinting.png");
+						$("#modalDate").html("<span style='text-align: center;position:absolute;top: 33%;width: 453px;font-size: 28px;'>正在打印中......</span>");
+						$("#modalOK").html("打印故障");
+						$("#modalCancel").html("返回");
+					} else if(data.code == 3) {
+						$(".modal-con").find(".modal-conImg").attr("src", "img/beforeprinting.png");
+						layer.alert('<font size="3">' + data.message + '<font size="3">', {icon: 0});
+					}
+				},
+				error : function(err) {
+					console.log(err);
+					$("#modalOK").html("打印故障");
+					$("#modalCancel").html("返回");
+				}
+			});
+			layer.close(index);
+		}else if(curShowText.trim() == "注销登录"){
+			console.log('执行注销操作');
+			window.location.href = "/printing/doLogout";
+		}else if(curShowText.trim() == "打印故障"){
+			// todo
+			$(".modal-con").find(".modal-conImg").attr("src", "img/beforeprinting.png");
+			/*取消选中状态*/
+			cancel_select_all();
+			 $("#printModal").modal("hide");//点击关闭弹出的窗口
+		}
+	}
+	
+	function print_reset(){
+		$(".modal-con").find(".modal-conImg").attr("src", "img/beforeprinting.png");
+		/*打印完成后取消选中状态*/
+		cancel_select_all();
+	}
+
+	$("#printModal").on("hidden.bs.modal", 
+					function() {
+						$(".modal-body").html("<span style='font-size: large;'>本次打印共 <span class='red' id='selectedNum'>1</span> 张&nbsp;&nbsp;&nbsp;打印份数</span><span class='red' id='copyCount'>1</span><span style='font-size: large;'>份</span>");
+						$("#modalOK").html("提交");
+						$("#modalCancel").html("返回");
+					});
+	
+	function saveFunctionName(fcn) {
+		if (window.sessionStorage) {
+			if(sessionStorage.functionName == fcn){
+				return;
+			}
+			if (fcn == "setting") {
+				$("#settingModal").modal({
+					backdrop : 'static',
+					show : true
+				});/*backdrop: 'static'指的是点击背景空白处模态窗口不被关闭*/
+				return;
+			}
+			sessionStorage.functionName = fcn;
+			console.log(sessionStorage.functionName);
+			window.location.href = "toList?functionName=" + fcn;
+		} else {
+			console.log("sessionStorage NOT SUPPORT");
+		}
+	}
+	
+	function showVerticalNav() {
+		console.log(functionName);
+		$("#"+functionName).attr("style", "border-top-right-radius:5px; border-bottom-right-radius:5px; height:50px; vertical-align:middle; background:rgb(23, 140, 91); margin-right:15px; margin-left:0px;");
+		
+		$("#nav_vertical").show();
+		$("#nav_vertical_icon").children().first().attr("class", "glyphicon glyphicon-remove");
+		$("#nav_vertical_icon").attr("onclick", "hideVerticalNav()");
+	};
+
+	function hideVerticalNav() {
+		$("#nav_vertical").hide();
+		$("#nav_vertical_icon").children().first().attr("class", "glyphicon glyphicon-align-justify");
+		$("#nav_vertical_icon").attr("onclick", "showVerticalNav()");
+	};
+	
+	//放在input的onclick函数上当点击输入框时弹出软键盘
+	function showKeyboard() {
+		var style = $("#jqk-toggle-btn").css("display");
+		console.log(style);
+		if (style != "none") {
+			$("#jqk-toggle-btn").click();
+		}
+	}
+</script>
+</html>
+

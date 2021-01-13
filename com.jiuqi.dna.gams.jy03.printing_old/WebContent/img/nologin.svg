@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="38px" height="38px" viewBox="0 0 38 38" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50 (54983) - http://www.bohemiancoding.com/sketch -->
+    <title>免登录打印</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#3A9AD2" offset="0%"></stop>
+            <stop stop-color="#23A483" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="1280x1024" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1D登录" transform="translate(-771.000000, -486.000000)">
+            <g id="Group" transform="translate(350.000000, 352.000000)">
+                <g id="登录方式" transform="translate(0.000000, 88.000000)">
+                    <g id="账户登录-copy" transform="translate(300.000000, 0.000000)">
+                        <g id="个人中心-登录" transform="translate(121.000000, 46.000000)">
+                            <rect id="Rectangle-3" x="0" y="0" width="38" height="38"></rect>
+                            <path d="M28.8786162,9.16142408 C28.8786162,14.2210085 24.6796386,18.3228061 19.4998279,18.3228061 C14.3205336,18.3228061 10.121642,14.2212607 10.121642,9.16142408 C10.121642,4.10183967 14.3206627,0 19.4998279,0 C24.6796816,0 28.8786162,4.1015454 28.8786162,9.16142408 Z M33,30.8519334 C33,37.1374328 26.9555534,38 19.4996987,38 C12.0444466,38 6,37.1380634 6,30.8523538 C6,24.5670226 12.0443605,19.4713683 19.5003013,19.4713683 C26.9560698,19.4712002 33,24.5667284 33,30.8517653 L33,30.8519334 Z" id="Shape" fill="url(#linearGradient-1)" fill-rule="nonzero"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

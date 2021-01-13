@@ -1,0 +1,53 @@
+#twoRows a{
+	display:block;
+}
+.swiper-container{
+	height: 470px;
+	padding:0 30px;
+	width:616px;
+}
+#twoRows .swiper-slide{
+	height: initial;
+}
+.swiper-wrapper .swiper-slide{
+	height:100%;
+	border: 1px solid #d2d2d2;
+	margin-left: -1px;
+	margin-bottom: -1px;
+}
+
+.swiper-ConlistImg{
+	width:60px;
+	height:60px;
+	display:block;
+	margin-top:50px;
+	margin-left: 30px;
+}
+.swiper-ConlistCon{
+	text-align:left;
+	margin-left:30px;
+	font-weight:549;
+	color: #333333;
+}
+.swiper-container .swiper-button-prev{
+	background-image: url("../img/goleft.svg");
+	background-size:100% 100%;
+	width:68px;
+	height:68px;
+	margin-top: -34px;
+	left:-2px;
+}
+.swiper-container .swiper-button-prev:hover{
+	background-image: url("../img/goleft-h.svg");
+}
+.swiper-container .swiper-button-next{
+	background-image: url("../img/goright.svg");
+	background-size:100% 100%;
+	width:68px;
+	height:68px;
+	margin-top: -34px;
+	right:-2px;
+}
+.swiper-container .swiper-button-next:hover{
+	background-image: url("../img/goright-h.svg");
+}

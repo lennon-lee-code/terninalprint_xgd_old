@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+	 	<base href="/printing/">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>主页</title>
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="css/bootstrap.css">
+		<link rel="stylesheet" href="css/form-elements.css">
+        <link rel="stylesheet" href="css/indexPageStyle.css">
+        <link rel="stylesheet" href="css/jqkeyboard.css" />
+        <!-- add by wangjiao -->
+        <link rel="stylesheet" href="css/font.css" />
+    </head>
+
+    <body>
+
+		<!--导航条-->
+		<nav class="navbar navbar-inverse navbar-no-bg" role="navigation">
+			<div class="container" style="margin-right: 5%;">
+				<div class="collapse navbar-collapse" id="top-navbar-1">
+					<ul class="nav navbar-nav navbar-right">
+						<li>
+							<!--<button class="lucencyBtn"><span class="glyphicon glyphicon-home"></span>主页</button>-->
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+        <!--页面中心主要内容-->
+       <div class="top-content">
+        	
+            <div class="inner-bg">
+                <div class="container">
+                    <div class="row" style="text-align: center;">
+                    	<div style="margin-bottom: 3%;vertical-align: middle;">
+                    			<img src="img/schoollogo.png" style="display: inline-block;width: 350px;height: 33px;margin: 0 0 6px 0;"/>
+                        		<!--  <span style="font-family: MicrosoftYaHei;font-size: 50px;color: #FFFFFF;">资产管理平台自助打印服务终端</span>-->                        		
+                        </div>
+                    	<div onclick="toLogin('normal')" style="cursor:pointer;text-align:center;padding-top:40px;height:170px;width:280px;box-shadow: 0 0 8px 0;background-color:#EEEEEE ;border-radius:8px ;display: inline-block;margin-right: 25px;">
+                    		<img src="img/lock.png" alt="1" style="display:block;margin-bottom: 25px;margin-left: auto;margin-right: auto;"/>
+                    		<span style="font-family: MicrosoftYaHei;font-size: 20px;color: #333333;text-align: center;">账号登录</span>
+                    	</div>
+                    	<div onclick="toLogin('NFC')" style="cursor:pointer;text-align:center;padding-top:40px;height:170px;width:280px;box-shadow: 0 0 8px 0;background-color:#EEEEEE ;border-radius:10px ;display: inline-block;margin-left: 25px;">
+                    		<img src="img/nologin.png" alt="2" style="display:block;margin-bottom: 25px;margin-left: auto;margin-right: auto;"/>
+                    		<span style="font-family: MicrosoftYaHei;font-size: 20px;color: #333333;text-align: center;">一卡通登录</span>
+                    	</div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    <!--页面下端-->
+	<span style="font-family: MicrosoftYaHei;font-size: 16px;color: #FFFFFF;letter-spacing: -0.07px;text-align: center;">本终端由久其软件提供技术支持</span>
+
+    </body>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.backstretch.min.js"></script>
+    <script src="js/background.js"></script>
+    <script src="js/timeout.js"></script>
+	<script>
+	    //默认进首页，清除系统缓存
+	    $.ajax({
+		type : "post",
+		url : "doLogout",
+		success : function(data){
+		},
+		error : function(err){
+			console.log(err);
+		}
+	   });
+		function toLogin(type){
+			if(type == 'NFC'){
+				window.location.href="/printing/toNFCLogin";
+			}else{
+				window.location.href="/printing/toLogin";
+			}
+			
+		}
+	</script>
+</html><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT>

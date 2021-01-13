@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<base href="/printing/">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>功能页</title>
+
+<!-- CSS -->
+<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/form-elements.css">
+<link rel="stylesheet" href="css/font.css">
+<link rel="stylesheet" href="css/functionsPageStyle.css">
+<link rel="stylesheet" href="css/sweetalert2.min.css" />
+<link rel="stylesheet" href="css/swiper.min.css">
+<link rel="stylesheet" href="css/index.css">
+<link rel="stylesheet" href="html/layui/css/layui.css">
+<style type="text/css">
+div.first_row {
+	text-align: left;
+	border-style: solid;
+	border-color: RGB(211, 217, 227);
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-width: 0px;
+	border-right-width: 0px;
+	height: 100%;
+	padding-top: 65px;
+	padding-left: 30px;
+	padding-right: 0px;
+}
+
+div.second_row {
+	text-align: left;
+	border-style: solid;
+	border-color: RGB(211, 217, 227);
+	border-bottom-width: 0px;
+	border-left-width: 1px;
+	border-top-width: 0px;
+	border-right-width: 0px;
+	height: 100%;
+	padding-top: 65px;
+	padding-left: 30px;
+	padding-right: 0px;
+}
+/*菱形样式*/
+.left_float_diamond {
+	border-width: 0px;
+	background-color: white;
+	width: 40px;
+	height: 40px;
+	cursor: pointer;
+	display: block;
+	position: absolute;
+	top: 50%;
+	left: 0;
+	transform: translateY(-50%) translateX(-50%) rotate(45deg);
+	-ms-transform: translateY(-50%) translateX(-50%) rotate(45deg);
+	/* Internet Explorer */
+	-moz-transform: translateY(-50%) translateX(-50%) rotate(45deg);
+	/* Firefox */
+	-webkit-transform: translateY(-50%) translateX(-50%) rotate(45deg);
+	/* Safari 和 Chrome */
+	-o-transform: translateY(-50%) translateX(-50%) rotate(45deg);
+	/* Opera */
+}
+.right_float_diamond {
+	border-width: 0px;
+	background-color: white;
+	width: 40px;
+	height: 40px;
+	vertical-align: middle;
+	text-align: center;
+	cursor: pointer;
+	display: block;
+	position: absolute;
+	top: 50%;
+	right: 0;
+	transform: translateY(-50%) translateX(50%) rotate(45deg);
+	-ms-transform: translateY(-50%) translateX(50%) rotate(45deg);
+	/* Internet Explorer */
+	-moz-transform: translateY(-50%) translateX(50%) rotate(45deg);
+	/* Firefox */
+	-webkit-transform: translateY(-50%) translateX(50%) rotate(45deg);
+	/* Safari 和 Chrome */
+	-o-transform: translateY(-50%) translateX(50%) rotate(45deg);
+	/* Opera */
+}
+
+#twoRows {
+	margin-left: 1px;
+	margin-top: 1px;
+	overflow:hidden;
+}
+
+/*日常运维功能*/
+.modal-dialog {
+	width: 1180px;
+	height: 400px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	background: RGB(238, 245, 247);
+}
+
+#settingDiv {
+	width: 1150px;
+	min-height: 400px;
+	margin: 0 auto;
+}
+
+.settingData {
+	float: right;
+	width: 340px;
+	height: 40px;
+}
+
+</style>
+</head>
+<body>
+
+	<!--导航条-->
+	<nav class="navbar navbar-inverse navbar-no-bg" role="navigation">
+		<div style="margin-right: 5%; margin-left: 5%;">
+			<div class="navbar-header">
+				<div
+					style="display: inline-block; margin-top: 28px; vertical-align: middle;">
+					<img src="img/schoollogo.png"
+						style="display: inline-block; width: 350px; height: 33px; margin: 0 0 6px 0;" />
+					<!-- <span
+						style="font-family: MicrosoftYaHei; font-size: 22px; color: #FFFFFF;"> 资产管理平台自助打印服务终端</span> -->
+				</div>
+			</div>
+			<div class="collapse navbar-collapse" id="top-navbar-1">
+				<ul class="nav navbar-nav navbar-right">
+					<li>
+						<button onclick="logout()" class="lucencyBtn">
+							<img src="img/logout.svg"
+								style="display: inline-block; width: 20px; height: 20px; margin: 0 0 6px 0;" />
+							注销
+						</button>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<!--页面中心主要内容-->
+	<div class="top-content">
+		<div class="inner-bg">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-offset-1 col-md-10"
+						style="height: 700px; padding: 0px;">
+					 <!-- 	<div class="col-md-4"
+							style="background-color: #EEEEEE; display: inline-block; height: 100%; padding: 0; position: relative; vertical-align: middle;">
+							<div onclick="toOwnAssetCard()"
+								style="cursor: pointer; background-image: url(img/ownassetsearchbackground.png); background-size: 350px 400px; display: inline-block; width: 350px; height: 400px; position: absolute; right: 15%; top: 50%; transform: translateY(-50%); padding-left: 60px; padding-top: 160px; border-radius: 10px;">
+								<img src="img/ownassetsearch.svg"
+									style="display: block; height: 45px; width: 45px; margin-bottom: 40px;" />
+								<span style="display: block; text-align: left; color: #FFFFFF;">个人名下资产</span>
+							</div>
+						</div>  -->
+						<div id="twoRows" 
+							style=" display: inline-block; height: 100%; padding: 0px; position: relative;">
+                            <script type="text/template" id="twoRowsData">
+				                 <% for (var i=0,l=list.length;i<l;i++) { %>
+                                     <% if(i<2){%>
+                                        <div class="col-md-6" style="margin-bottom:20px;padding:0 20px 0 0;height:250px;width:350px;position: relative;margin-left: 100px;">
+						                   <div style="cursor:pointer;background-color: #FFFFFF;border-radius: 5px;width: 350px;height: 100%;display: inline-block;float: left;" onclick="saveFunctionName('<%= list[i].name%>')">
+							                  <div style="width: 100%;position:absolute; top: 50%;left:50%;transform: translate(-50%,-50%);">
+								                 <img class="swiper-ConlistImg" style="width: 120px;height: 120px;display: block;margin: auto" alt="p" src="img/<%= list[i].name%>.png"/>
+               					                 <div class="swiper-ConlistCon" style="text-align: center;margin-left: 0;font-size:200%"><%= list[i].title%></div>
+							                  </div>
+						                   </div>
+					                    </div>
+                                     <% }else{%>  
+					                       <div class="col-md-3" style="margin-bottom:20px;padding:0 20px 0 0;height:200px;width:300px;position: relative;margin-left: 20px;">
+						                      <div style="cursor:pointer;background-color: #FFFFFF;border-radius: 5px;width: 300px;height: 100%;display: inline-block;float: left;" onclick="saveFunctionName('<%= list[i].name%>')">
+							                     <div style="width: 100%;position:absolute; top: 50%;left:50%;transform: translate(-50%,-50%);">
+								                    <img class="swiper-ConlistImg" style="width: 90px;height: 90px;display: block;margin: auto" alt="p" src="img/<%= list[i].name%>.png"/>
+               					                    <div class="swiper-ConlistCon" style="text-align: center;margin-left: 0;font-size:170%"><%= list[i].title%></div>
+							                     </div>
+						                      </div>
+					                       </div>
+                                     <% } %>
+				                 <% } %>
+			                </script>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="settingModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-body">
+				<div id="settingDiv">
+					<div class="layui-tab layui-tab-card">
+						<ul class="layui-tab-title">
+							<li class="layui-this" data-printType="label">标签设置</li>
+							<li data-printType="bill">纸张设置</li>
+						</ul>
+						<div class="layui-tab-content" style="height: 100px;">
+							<div class="layui-tab-item layui-show">
+								<button class="layui-btn layui-btn-primary" value="label" onclick="clickButton(this)">更换标签</button>
+								<button class="layui-btn layui-btn-primary" value="carbon" onclick="clickButton(this)">更换碳带</button>
+								<button class="layui-btn layui-btn-primary" value="cartridge" onclick="clickButton(this)">更换硒鼓</button>
+								<div class="settingData">
+									<div class="layui-form-item">
+										<label class="layui-form-label" style="width: 125px"><font color="red" style="position:relative; top:4px;">*</font>&nbsp;预计可打印张数</label>
+										<div class="layui-input-inline">
+											<input type="text" class="layui-input" id="settingNum_label" onkeyup="value=value.replace(/[^\d]/g, '').replace(/^0{1,}/g,'')">
+										</div>
+									</div>
+								</div>
+								<div class="settingData">
+									<div class="layui-form-item">
+										<label class="layui-form-label" style="width: 125px"><font color="red" style="position:relative; top:4px;">*</font>&nbsp;操作时间</label>
+										<div class="layui-input-inline">
+											<input type="text" class="layui-input" id="settingDate_label">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="layui-tab-item">
+								<button class="layui-btn layui-btn-primary" value="bill" onclick="clickButton(this)">更换A4纸</button>
+								<button class="layui-btn layui-btn-primary" value="carbon" onclick="clickButton(this)">更换碳带</button>
+								<button class="layui-btn layui-btn-primary" value="cartridge" onclick="clickButton(this)">更换硒鼓</button>
+								<div class="settingData">
+									<div class="layui-form-item">
+										<label class="layui-form-label" style="width: 125px"><font color="red" style="position:relative; top:4px;">*</font>&nbsp;预计可打印张数</label>
+										<div class="layui-input-inline">
+											<input type="text" class="layui-input" id="settingNum_bill" onkeyup="value=value.replace(/[^\d]/g, '').replace(/^0{1,}/g,'')">
+										</div>
+									</div>
+								</div>
+								<div class="settingData">
+									<div class="layui-form-item">
+										<label class="layui-form-label" style="width: 125px"><font color="red" style="position:relative; top:4px;">*</font>&nbsp;操作时间</label>
+										<div class="layui-input-inline">
+											<input type="text" class="layui-input" id="settingDate_bill">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div style="margin-top: 150px;">
+						<button id="modalCancel" onclick="reset()" type="button"
+							class="btn btn-default" data-dismiss="modal"
+							style="margin-right: 50px; border-radius: 5px; color: RGB(23, 140, 91); width: 150px; font-size: 16px;">取消</button>
+						<button id="modalOK" onclick="doSetting()" type="button"
+							class="btn btn-primary"
+							style="border-radius: 5px; border-width: 0px; background: linear-gradient(to right, RGB(57, 154, 210), RGB(37, 164, 132)); width: 150px; font-size: 16px;">确定</button>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<!--页面下端提示-->
+	<span style="color: white;">本终端由久其软件提供技术支持</span>
+
+</body>
+<!-- SweetAlert2 插件相关 -->
+<script src="js/jquery-2.1.1.min.js"></script>
+<script src="html/layui/layui.js"></script>
+<script src="js/es6-promise.min.js"></script>
+<script src="js/es6-promise.auto.js"></script>
+<script src="js/sweetalert2.min.js"></script>
+<!-- SweetAlert2 插件相关 -->
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.backstretch.min.js"></script>
+<script src="js/background.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="js/template-native.js"></script>
+<script src="js/swiper.min.js"></script>
+<script src="js/timeout.js"></script>
+<script type="text/javascript">
+	window.onload = function() {
+		$.ajax({
+			type : "post",
+			url : "getFunctions",
+			dataType : "json",
+			charset : 'UTF-8',
+			success : function(data) {
+				var html = template('twoRowsData', {
+					list : data.functions
+				});
+				$('#twoRows').html(html);
+				if (window.sessionStorage) {
+					var func = new Array();
+					for(var i=0;i<data.functions.length;i++){
+						func.push(data.functions[i].name);
+					}
+					sessionStorage.functions = func;
+				}
+			}
+		});
+		layui.use('element', function() {
+			var element = layui.element;
+		});
+		layui.use('laydate', function() {
+			var laydate = layui.laydate;
+			//执行一个laydate实例
+			laydate.render({
+				elem : '#settingDate_label', // 指定元素
+				type : 'date'
+			});
+			laydate.render({
+				elem : '#settingDate_bill', // 指定元素
+				type : 'date'
+			});
+		});
+		layui.use('layer', function(){
+			  var layer = layui.layer;
+			});   
+	}
+
+	function toOwnAssetCard() {
+		window.location.href = "/printing/toOwnAssetCard";
+	}
+
+	function saveFunctionName(fcn) {
+		if (window.sessionStorage) {
+			if (fcn == "setting") {
+				$("#settingModal").modal({
+					backdrop : 'static',
+					show : true
+				});/*backdrop: 'static'指的是点击背景空白处模态窗口不被关闭*/
+				return;
+			}
+
+			sessionStorage.functionName = fcn;
+			console.log(sessionStorage.functionName);
+			window.location.href = "toList?functionName=" + fcn;
+		} else {
+			console.log("sessionStorage NOT SUPPORT");
+		}
+	}
+	
+	function clickButton(curButton){
+		var curClass = $(curButton).attr("class");
+		if(curClass == "layui-btn layui-btn-primary"){
+			$(curButton).siblings("button").addClass("layui-btn-primary");
+			$(curButton).removeClass("layui-btn-primary");
+		}else if(curClass == "layui-btn"){
+			$(curButton).siblings("button").addClass("layui-btn-primary");
+		}
+		
+		// 查询操作时间、预计可打印张数
+		// 打印类型
+		var ptType = $(".layui-this").attr("data-printType");
+		// 更换类型
+		var chgType = $(curButton).val();
+		
+		var settingObj = {};
+		settingObj.changeType = chgType;
+		
+		$.ajax({
+			type : "post",
+			url : "querySetting?printType="+ptType,
+			data : {
+				"data" : JSON.stringify(settingObj)
+			},
+			dataType : "json",
+			success : function(data) {
+				if(ptType == "label"){
+					$("#settingNum_label").val(data.result.settingNum);
+					$("#settingDate_label").val(data.result.settingDate);
+				}else if(ptType == "bill"){
+					$("#settingNum_bill").val(data.result.settingNum);
+					$("#settingDate_bill").val(data.result.settingDate);
+				}
+			},
+			error : function(err, errMsg) {
+				console.log(err + ':' + errMsg)
+			}
+		});
+	}
+	
+	function reset(){
+		$(".layui-btn").each(function(){
+			if($(this).attr('class') == 'layui-btn'){
+				$(this).click();
+			}
+		});
+	}
+	
+	function doSetting(){
+		// 打印类型
+		var ptType = $(".layui-this").attr("data-printType");
+		
+		// 更换类型
+		var chgType;
+		$(".layui-btn").each(function(){
+			if($(this).attr('class') == 'layui-btn'){
+				chgType = $(this).val();
+			}
+		});
+		if(chgType == null || chgType == "" ){
+			layer.msg('请选择更换类型');
+			return;
+		}
+		
+		// 操作时间、预计可打印张数
+		var stDate;
+		var stNum;
+		if(ptType == "label"){
+			stDate = $("#settingDate_label").val();
+			if(stDate == null || stDate == ""){
+				layer.msg('请选择操作时间');
+				return;
+			}
+			
+			stNum = $("#settingNum_label").val();
+			if(stNum == null || stNum == ""){
+				layer.msg('请设置预计可打印数量');
+				return;
+			}
+			if(!test(stNum)){
+				return;
+			}
+		}else if(ptType == "bill"){
+			stDate = $("#settingDate_bill").val();
+			if(stDate == null || stDate == ""){
+				layer.msg('请选择操作时间');
+				return;
+			}
+			
+			stNum = $("#settingNum_bill").val();
+			if(stNum == null || stNum == ""){
+				layer.msg('请设置预计可打印数量');
+				return;
+			}
+			if(!test(stNum)){
+				return;
+			}
+		}
+		
+		// 校验通过后
+		var settingObj = {};
+		settingObj.changeType = chgType;
+		settingObj.settingNum = stNum;
+		settingObj.settingDate = stDate;
+		
+		$.ajax({
+			type : "post",
+			url : "setSettingNum?printType="+ptType,
+			data : {
+				"data" : JSON.stringify(settingObj)
+			},
+			/* dataType : "json", */
+			success : function() {	
+				layer.msg('设置成功');
+			},
+			error : function(err, errMsg) {
+				layer.msg('设置失败，请联系管理员');
+				console.log(err + ':' + errMsg)
+			}
+		});
+		
+	}
+	
+	function test(value){
+		if(value > 99999){
+			layer.msg("预计可打印张数最大值为99999");
+			return false;
+		}
+		if(value < 0){
+			layer.msg("预计可打印张数最小值为0");
+			return false;
+		}
+		return true;
+	}
+</script>
+
+</html><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT>

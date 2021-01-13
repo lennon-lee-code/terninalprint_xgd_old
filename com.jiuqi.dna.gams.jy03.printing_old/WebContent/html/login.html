@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<base href="/printing/">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>登录页</title>
+
+<!-- CSS -->
+<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/form-elements.css">
+<link rel="stylesheet" href="css/loginPageStyle.css">
+<link rel="stylesheet" href="css/jqkeyboard.css" />
+<link rel="stylesheet" href="css/font.css" />
+<link rel="stylesheet" href="css/sweetalert2.min.css" />
+<style>
+	#jq-keyboard{
+		left: 0;
+		width: 100%;
+	}
+	#jq-keyboard .btn-row{
+		height: 40px;
+	}
+	#jq-keyboard button.jqk-btn{
+		width: 80px;
+		height: 40px;
+	}
+	button.jqk-lang-btn{
+		display: none;
+	}
+	#jqk-lang-cont{
+		margin-bottom: 0;
+	}
+</style>
+</head>
+<body style="position:relative; overflow-y: hidden;">
+
+	<!--导航条-->
+	<nav class="navbar navbar-inverse navbar-no-bg" role="navigation">
+		<div class="container" style="margin-right: 5%;">
+			<div class="collapse navbar-collapse" id="top-navbar-1">
+				<ul class="nav navbar-nav navbar-right">
+					<li>
+						<!--<button class="lucencyBtn"><span class="glyphicon glyphicon-home"></span>主页</button>-->
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<!--表格和标题-->
+	<div class="top-content">
+
+		<div class="inner-bg">
+			<div class="container">
+
+				<div class="row">
+					<div class="col-sm-12 form-box"
+						style="padding-left: 200px; padding-right: 200px;">
+						<div style="margin-bottom: 20px; vertical-align: middle;">
+							<img src="img/schoollogo.png"
+								style="display: inline-block; width: 350px; height: 33px; margin: 0 0 6px 0;" />
+							<!-- <span
+								style="font-family: MicrosoftYaHei; font-size: 50px; color: #FFFFFF;">资产管理平台自助打印服务终端</span> -->
+						</div>
+						<form role="form" action="" method="post"
+							class="registration-form">
+							<fieldset>
+								<div class="form-bottom" style="height: 80%;">
+									<div class="form-group">
+										<input type="text" name="userName" placeholder="请输入用户名" 
+											onclick="showKeyboard()" class="form-control" id="userName" autocomplete="off"
+											style="padding-left: 20px; background: url(img/username.svg) no-repeat 8px 14px #fff; text-indent: 20px;">
+									</div>
+									<div class="form-group">
+										<input type="password" name="password" placeholder="密码" flag="password"
+											onclick="showKeyboard()" class="form-control" id="password" autocomplete="new-password" 
+											style="padding-left: 20px; background: url(img/password.svg) no-repeat 8px 14px #fff; text-indent: 20px;">
+									</div>
+									<div
+										style="width: 100%; margin-top: 50px; text-align: center; position: relative;">
+										<div id="doLoginDiv" onclick="doLogin()" style="margin: 0, auto; display: inline-block; cursor: pointer; height: 40px; margin: 0 auto; text-align: center; width: 200px; border-radius: 5px; background: linear-gradient(to bottom right, RGB(57, 154, 210), RGB(37, 164, 132));background:#3477CB">
+											<span style="font-family: MicrosoftYaHei; font-size: 18px; color: #FFFFFF; text-align: center; line-height: 40px;">登录</span>
+										</div>
+										<!-- <span style="position: absolute; right: 0px; cursor: pointer; font-family: MicrosoftYaHei; font-size: 16px; color: #868686;">其他方式登录</span> -->
+									</div>
+								</div>
+							</fieldset>
+						</form>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<!--底端备注-->
+	<span
+		style="font-family: MicrosoftYaHei; font-size: 16px; color: #FFFFFF; letter-spacing: -0.07px; text-align: center;">本终端由久其软件提供技术支持</span>
+
+	<div id="keyboard"></div>
+
+</body>
+
+<!-- SweetAlert2 插件相关 -->
+<script src="js/jquery-2.1.1.min.js"></script>
+<script src="js/es6-promise.min.js"></script>
+<script src="js/es6-promise.auto.js"></script>
+<script src="js/sweetalert2.min.js"></script>
+<!-- SweetAlert2 插件相关 -->
+
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.backstretch.min.js"></script>
+<script src="js/loginPageScripts.js"></script>
+<script src="js/background.js"></script>
+
+<script src="js/jquery-ui.min.js"></script>
+<script src="js/jqkeyboard-min.js"></script>
+<script src="js/jqk.layout.en.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="js/timeout.js"></script>
+
+<script>
+	//用来初始化软键盘
+	$(function() {
+		"use strict";
+		jqKeyboard.init({
+
+			allowed : [ "#userName", "#password" ],
+			icon : "light"
+		});
+
+	});
+</script>
+
+<script >
+//解决Chrome上出现的密码自动补全(propertychange属性兼容IE)       
+$(function () { 
+	$("[flag='password']").bind('input propertychange', function(e) {
+		//取消事件的默认动作            
+		e.preventDefault();           
+		$(this).attr("type","password");       
+			});    
+		});
+
+</script>
+
+<script>
+	//放在input的onclick函数上当点击输入框时弹出软键盘
+	function showKeyboard() {
+		var style = $("#jqk-toggle-btn").css("display");
+		console.log(style);
+		if (style != "none") {
+			$("#jqk-toggle-btn").click();
+		}
+	}
+</script>
+
+<!-- 添加回车监听 -->
+<script type="text/javascript">
+	$('#userName').bind('keypress', function(event) {
+		　　if (event.keyCode == "13") {
+		　　　　// 执行tab键
+			  $("#password").focus();
+		　　}
+		});
+	$('#password').bind('keypress', function(event) {
+		　　if (event.keyCode == "13") {
+		　　　　// 回车执行查询
+		　　　　$('#doLoginDiv').click();
+		　　}
+		});
+</script>
+
+<script type="text/javascript">
+	function doLogin() {
+		var username = $("#userName").val();
+		var password = $("#password").val();
+		$.ajax({
+			type : "post",
+			url : "doLogin?username=" + username + "&&password=" + password,
+			dataType : "json",
+			charset : 'UTF-8',
+			success : function(data) {
+				console.log(data);
+				$.cookie('userTitle', data.userTitle);
+				console.log($.cookie('userTitle'));
+				if (!data.isSuccessful) {
+					swal({
+						text : data.message,
+						type : 'error',
+						confirmButtonText : 'OK',
+						allowEscapeKey : true,
+						allowOutsideClick : false,
+					}).then(function(isConfirm) {
+						if (isConfirm === true) {
+							if(data.message.indexOf("账号") != -1){
+								$("#userName").focus(); // 聚焦
+								$("#userName").select();// 全选
+							} else {
+								$("#password").focus(); // 聚焦
+								$("#password").select();// 全选 
+							}
+						}
+					});
+				} else {
+					window.location.href = "/printing/toFunction";
+				}
+			}
+		});
+	}
+</script>
+
+</html><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT>

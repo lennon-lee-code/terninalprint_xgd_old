@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="67px" height="67px" viewBox="0 0 67 67" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50 (54983) - http://www.bohemiancoding.com/sketch -->
+    <title>左侧切换</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="9" y="9" width="41" height="41" rx="4"></rect>
+        <filter x="-24.4%" y="-19.5%" width="148.8%" height="148.8%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="1280x1024" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="2C磁铁页面" transform="translate(-468.000000, -473.000000)">
+            <g id="磁条" transform="translate(112.000000, 295.000000)">
+                <g id="左侧切换" transform="translate(356.000000, 178.000000)">
+                    <g transform="translate(32.500000, 32.500000) scale(-1, 1) translate(-32.500000, -32.500000) translate(3.000000, 3.000000)">
+                        <g id="Rectangle-6" transform="translate(29.500000, 29.500000) rotate(-315.000000) translate(-29.500000, -29.500000) ">
+                            <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                            <rect stroke="#D3D8E2" stroke-width="1" stroke-linejoin="square" fill="#FFFFFF" fill-rule="evenodd" x="9.5" y="9.5" width="40" height="40" rx="4"></rect>
+                        </g>
+                        <path d="M23.3333333,24 L34,24 L34,25.3333333 L23.3333333,25.3333333 L23.3333333,36 L22,36 L22,24 L23.3333333,24 Z" id="Combined-Shape" fill="#B7BBC2" transform="translate(28.000000, 30.000000) rotate(-225.000000) translate(-28.000000, -30.000000) "></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

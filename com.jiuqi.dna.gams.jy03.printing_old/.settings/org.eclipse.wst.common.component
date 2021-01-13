@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="com.jiuqi.dna.gams.jy03.printing">
+        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <property name="java-output-path" value="/com.jiuqi.dna.gams.jy03.printing/build/classes"/>
+        <property name="context-root" value="printing"/>
+    </wb-module>
+</project-modules>
